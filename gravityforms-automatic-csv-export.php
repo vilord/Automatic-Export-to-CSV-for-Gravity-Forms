@@ -38,8 +38,12 @@ function gf_simple_addon() {
 
 function gforms_automated_export() {
 
-	$output = "";
+	
 	// STEP 1 go through the last day of entries, and write them to a csv file
+
+
+	$output = "";
+
 
 	$search_criteria['start_date'] = date('Y-m-d', time() - 60 * 60 * 24);
 	$search_criteria['end_date'] = date('Y-m-d', time() - 60 * 60 * 24); 
@@ -56,8 +60,8 @@ function gforms_automated_export() {
 
 	foreach ( $all_form_entries as $entry ) {
 
-		for ( $i = 1; $i < 3000; $i++ ){
-			$output .= $entry[$i];
+		for ( $i = 1; $i < 10; $i++ ){
+			$output .= $entry[$i] . ',';
 		}	
 
 		$output .= ','; 
@@ -66,7 +70,7 @@ function gforms_automated_export() {
 	
 	$upload_dir = wp_upload_dir();
 
-	$myfile = fopen("wp-content/uploads/csv_export/" . date('Y-m-d') . ".csv", "w") or die("Unable to open file!");
+	$myfile = fopen("wp-content/uploads/" . date('Y-m-d') . ".csv", "w") or die("Unable to open file!");
 	$csv_contents = $output;
 	
 	fwrite($myfile, $csv_contents);
@@ -77,10 +81,10 @@ function gforms_automated_export() {
 
 	//Is the current timestamp greater than the time the last export was sent, plus one day? it has to be more than 24 hours for exports to get emailed.
 
-	if ( time() > ( get_option( 'gform_last_export_sent' ) + 86400) ) {
+	//if ( time() > ( get_option( 'gform_last_export_sent' ) + 86400) ) {
 
 		// Send an email using the latest csv file
-		$attachments = 'wp-content/uploads/csv_export/' . date('Y-m-d') . '.csv';
+		$attachments = 'wp-content/uploads/' . date('Y-m-d') . '.csv';
 		$headers[] = 'From: WordPress <you@yourdomain.org>';
 		//$headers[] = 'Bcc: bcc@yourdomain.com';
 		wp_mail( $email_address , 'Automatic Form Export', 'CSV export is attached to this message', $headers, $attachments);
@@ -88,7 +92,7 @@ function gforms_automated_export() {
 		$current_timestamp = time();
 		update_option('gforms_last_export_sent', $current_timestamp);
 
-	}
+	//}
 
 	
 }
