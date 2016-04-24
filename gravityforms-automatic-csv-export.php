@@ -56,12 +56,17 @@ function gforms_automated_export() {
 		$output .= $field->label . ',' ;
 	}
 
-	$output = "" . "\r\n";
+	$output .= "\r\n";
 
 	foreach ( $all_form_entries as $entry ) {
 
-		for ( $i = 1; $i < 10; $i++ ){
-			$output .= $entry[$i] . ',';
+		for ( $i = 1; $i < 100; $i++ ){
+			if ( array_key_exists( $i, $entry ) ) {
+	
+				$output .= preg_replace('/[.,]/', '', $entry[$i]) . ',';
+
+			}
+			
 		}	
 
 		$output .= ','; 
