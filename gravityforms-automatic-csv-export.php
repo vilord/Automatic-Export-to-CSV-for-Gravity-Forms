@@ -53,7 +53,7 @@ function gforms_automated_export() {
 	$form = GFAPI::get_form( 1 ); // get form by ID 
 
 	foreach( $form['fields'] as $field ) {
-		$output .= $field->label . ',' ;
+		$output .= preg_replace('/[.,]/', '', $field->label) . ',' ;
 	}
 
 	$output .= "\r\n";
@@ -73,9 +73,12 @@ function gforms_automated_export() {
 		$output .= "\r\n";
 	}
 	
+	
 	$upload_dir = wp_upload_dir();
+	
+	// To-do  : User WP function to upload to uploads directory
 
-	$myfile = fopen("wp-content/uploads/" . date('Y-m-d') . ".csv", "w") or die("Unable to open file!");
+	$myfile = fopen("wp-content/uploads/" . date('Y-m-d-gA') . ".csv", "w") or die("Unable to open file!");
 	$csv_contents = $output;
 	
 	fwrite($myfile, $csv_contents);
@@ -89,7 +92,7 @@ function gforms_automated_export() {
 	//if ( time() > ( get_option( 'gform_last_export_sent' ) + 86400) ) {
 
 		// Send an email using the latest csv file
-		$attachments = 'wp-content/uploads/' . date('Y-m-d') . '.csv';
+		$attachments = 'wp-content/uploads/' . date('Y-m-d-gA') . '.csv';
 		$headers[] = 'From: WordPress <you@yourdomain.org>';
 		//$headers[] = 'Bcc: bcc@yourdomain.com';
 		wp_mail( $email_address , 'Automatic Form Export', 'CSV export is attached to this message', $headers, $attachments);
@@ -102,3 +105,12 @@ function gforms_automated_export() {
 	
 }
 add_shortcode( 'export_csv', 'gforms_automated_export');
+
+
+if ( ! wp_next_scheduled( 'csv_task_hook' ) ) {
+  wp_schedule_event( time(), 'hourly', 'gravityforms_csv_export' );
+}
+
+add_action( 'csv_task_hook', 'gforms_automated_export' );
+
+
