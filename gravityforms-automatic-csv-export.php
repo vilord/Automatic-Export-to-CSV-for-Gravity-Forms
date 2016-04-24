@@ -39,6 +39,7 @@ function gf_simple_addon() {
 function gforms_automated_export() {
 
 	
+
 	// STEP 1 go through the last day of entries, and write them to a csv file
 
 
@@ -108,7 +109,7 @@ add_shortcode( 'export_csv', 'gforms_automated_export');
 
 
 if ( ! wp_next_scheduled( 'csv_task_hook' ) ) {
-  wp_schedule_event( time(), 'hourly', 'gravityforms_csv_export' );
+  wp_schedule_event( time(), 'daily', 'gravityforms_csv_export' );
 }
 
 add_action( 'csv_task_hook', 'gforms_automated_export' );
