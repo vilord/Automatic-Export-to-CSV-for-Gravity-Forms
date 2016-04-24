@@ -38,13 +38,7 @@ function gf_simple_addon() {
 
 function gforms_automated_export() {
 
-	//test writing 
-	$myfile = fopen("wp-content/uploads/test.txt", "w") or die("Unable to open file!");
-	$contents = "working";
-	fwrite($myfile, $contents);
-	fclose($myfile);
 
-	/*
 	// Go through the entries that match search criteria, and write them to a csv file
 	$output = "";
 
@@ -104,7 +98,7 @@ function gforms_automated_export() {
 		update_option('gforms_last_export_sent', $current_timestamp);
 
 	//}
-	*/
+	
 }
 // add_shortcode( 'export_csv', 'gforms_automated_export');
 
