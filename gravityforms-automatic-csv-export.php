@@ -10,7 +10,6 @@
 	License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 */
 
-/*Test booboo*/
 
 define( 'GF_AUTOMATIC_CSV_VERSION', '0.1' );
 
