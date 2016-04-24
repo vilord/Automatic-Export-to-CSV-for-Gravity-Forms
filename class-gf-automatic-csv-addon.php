@@ -102,20 +102,20 @@ class GFAutomaticCSVAddOn extends GFAddOn {
     public function form_settings_fields( $form ) {
         return array(
             array(
-                'title'  => esc_html__( 'Simple Form Settings', 'simpleaddon' ),
+                'title'  => esc_html__( 'Automatic CSV Export Form Settings', 'csvexport' ),
                 'fields' => array(
-                    // array(
-                    //     'label'   => esc_html__( 'My checkbox', 'simpleaddon' ),
-                    //     'type'    => 'checkbox',
-                    //     'name'    => 'enabled',
-                    //     'tooltip' => esc_html__( 'This is the tooltip', 'simpleaddon' ),
-                    //     'choices' => array(
-                    //         array(
-                    //             'label' => esc_html__( 'Enabled', 'simpleaddon' ),
-                    //             'name'  => 'enabled',
-                    //         ),
-                    //     ),
-                    // ),
+                    array(
+                        'label'   => esc_html__( 'Enable automatic export', 'csvexport' ),
+                        'type'    => 'enable_export',
+                        'name'    => 'enabled',
+                        'tooltip' => esc_html__( 'This will enable the automatic export of csv for this form.', 'csvexport' ),
+                        'choices' => array(
+                            array(
+                                'label' => esc_html__( 'Enabled', 'csvexport' ),
+                                'name'  => 'enabled',
+                            ),
+                        ),
+                    ),
                     // array(
                     //     'label'   => esc_html__( 'My checkboxes', 'simpleaddon' ),
                     //     'type'    => 'checkbox',
@@ -174,66 +174,66 @@ class GFAutomaticCSVAddOn extends GFAddOn {
                     array(
                         'label'   => esc_html__( 'CSV export frequency', 'csvexport' ),
                         'type'    => 'select',
-                        'name'    => 'mydropdown',
+                        'name'    => 'csv_export_frequency',
                         'tooltip' => esc_html__( 'This determines how frequently the export will be run and emailed to you.', 'csvexport' ),
                         'choices' => array(
                             array(
                                 'label' => esc_html__( 'Daily', 'csvexport' ),
-                                'value' => 'first',
+                                'value' => 'daily',
                             ),
                             array(
                                 'label' => esc_html__( 'Weekly', 'csvexport' ),
-                                'value' => 'second',
+                                'value' => 'weekly',
                             ),
                             array(
                                 'label' => esc_html__( 'Monthly', 'csvexport' ),
-                                'value' => 'third',
+                                'value' => 'monthly',
                             ),
                         ),
                     ),
                     array(
                         'label'             => esc_html__( 'Email Address', 'csvexport' ),
                         'type'              => 'text',
-                        'name'              => 'mytext',
+                        'name'              => 'email_address',
                         'tooltip'           => esc_html__( 'The csv will be sent to this email address', 'simpleaddon' ),
                         'class'             => 'medium',
-                        'feedback_callback' => array( $this, 'is_valid_setting' ),
+                        // 'feedback_callback' => array( $this, 'is_valid_setting' ),
                     ),
-                    array(
-                        'label'   => esc_html__( 'My Text Area', 'simpleaddon' ),
-                        'type'    => 'textarea',
-                        'name'    => 'mytextarea',
-                        'tooltip' => esc_html__( 'This is the tooltip', 'simpleaddon' ),
-                        'class'   => 'medium merge-tag-support mt-position-right',
-                    ),
-                    array(
-                        'label' => esc_html__( 'My Hidden Field', 'simpleaddon' ),
-                        'type'  => 'hidden',
-                        'name'  => 'myhidden',
-                    ),
-                    array(
-                        'label' => esc_html__( 'My Custom Field', 'simpleaddon' ),
-                        'type'  => 'my_custom_field_type',
-                        'name'  => 'my_custom_field',
-                        'args'  => array(
-                            'text'     => array(
-                                'label'         => esc_html__( 'A textbox sub-field', 'simpleaddon' ),
-                                'name'          => 'subtext',
-                                'default_value' => 'change me',
-                            ),
-                            'checkbox' => array(
-                                'label'   => esc_html__( 'A checkbox sub-field', 'simpleaddon' ),
-                                'name'    => 'my_custom_field_check',
-                                'choices' => array(
-                                    array(
-                                        'label'         => esc_html__( 'Activate', 'simpleaddon' ),
-                                        'name'          => 'subcheck',
-                                        'default_value' => true,
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
+                    // array(
+                    //     'label'   => esc_html__( 'My Text Area', 'simpleaddon' ),
+                    //     'type'    => 'textarea',
+                    //     'name'    => 'mytextarea',
+                    //     'tooltip' => esc_html__( 'This is the tooltip', 'simpleaddon' ),
+                    //     'class'   => 'medium merge-tag-support mt-position-right',
+                    // ),
+                    // array(
+                    //     'label' => esc_html__( 'My Hidden Field', 'simpleaddon' ),
+                    //     'type'  => 'hidden',
+                    //     'name'  => 'myhidden',
+                    // ),
+                    // array(
+                    //     'label' => esc_html__( 'My Custom Field', 'simpleaddon' ),
+                    //     'type'  => 'my_custom_field_type',
+                    //     'name'  => 'my_custom_field',
+                    //     'args'  => array(
+                    //         'text'     => array(
+                    //             'label'         => esc_html__( 'A textbox sub-field', 'simpleaddon' ),
+                    //             'name'          => 'subtext',
+                    //             'default_value' => 'change me',
+                    //         ),
+                    //         'checkbox' => array(
+                    //             'label'   => esc_html__( 'A checkbox sub-field', 'simpleaddon' ),
+                    //             'name'    => 'my_custom_field_check',
+                    //             'choices' => array(
+                    //                 array(
+                    //                     'label'         => esc_html__( 'Activate', 'simpleaddon' ),
+                    //                     'name'          => 'subcheck',
+                    //                     'default_value' => true,
+                    //                 ),
+                    //             ),
+                    //         ),
+                    //     ),
+                    // ),
                 ),
             ),
         );
