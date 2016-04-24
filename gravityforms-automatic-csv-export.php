@@ -38,13 +38,8 @@ function gf_simple_addon() {
 
 function gforms_automated_export() {
 
-	
-
-	// STEP 1 go through the last day of entries, and write them to a csv file
-
-
+	// Go through the entries that match search criteria, and write them to a csv file
 	$output = "";
-
 
 	$search_criteria['start_date'] = date('Y-m-d', time() - 60 * 60 * 24);
 	$search_criteria['end_date'] = date('Y-m-d', time() - 60 * 60 * 24); 
@@ -77,7 +72,7 @@ function gforms_automated_export() {
 	
 	$upload_dir = wp_upload_dir();
 	
-	// To-do  : User WP function to upload to uploads directory
+	// To-do: Use standard WP function to upload to wp-content directory
 
 	$myfile = fopen("wp-content/uploads/" . date('Y-m-d-gA') . ".csv", "w") or die("Unable to open file!");
 	$csv_contents = $output;
@@ -103,7 +98,6 @@ function gforms_automated_export() {
 
 	//}
 
-	
 }
 add_shortcode( 'export_csv', 'gforms_automated_export');
 
