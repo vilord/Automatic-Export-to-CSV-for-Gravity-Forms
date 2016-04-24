@@ -35,14 +35,14 @@ class GFAutomaticCSVAddOn extends GFAddOn {
                 'version' => $this->_version,
                 'deps'    => array( 'jquery' ),
                 'strings' => array(
-                    'first'  => esc_html__( 'First Choice', 'simpleaddon' ),
-                    'second' => esc_html__( 'Second Choice', 'simpleaddon' ),
-                    'third'  => esc_html__( 'Third Choice', 'simpleaddon' )
+                    'first'  => esc_html__( 'First Choice', 'csvexport' ),
+                    'second' => esc_html__( 'Second Choice', 'csvexport' ),
+                    'third'  => esc_html__( 'Third Choice', 'csvexport' )
                 ),
                 'enqueue' => array(
                     array(
                         'admin_page' => array( 'form_settings' ),
-                        'tab'        => 'simpleaddon'
+                        'tab'        => 'csvexport'
                     )
                 )
             ),
@@ -104,98 +104,98 @@ class GFAutomaticCSVAddOn extends GFAddOn {
             array(
                 'title'  => esc_html__( 'Simple Form Settings', 'simpleaddon' ),
                 'fields' => array(
+                    // array(
+                    //     'label'   => esc_html__( 'My checkbox', 'simpleaddon' ),
+                    //     'type'    => 'checkbox',
+                    //     'name'    => 'enabled',
+                    //     'tooltip' => esc_html__( 'This is the tooltip', 'simpleaddon' ),
+                    //     'choices' => array(
+                    //         array(
+                    //             'label' => esc_html__( 'Enabled', 'simpleaddon' ),
+                    //             'name'  => 'enabled',
+                    //         ),
+                    //     ),
+                    // ),
+                    // array(
+                    //     'label'   => esc_html__( 'My checkboxes', 'simpleaddon' ),
+                    //     'type'    => 'checkbox',
+                    //     'name'    => 'checkboxgroup',
+                    //     'tooltip' => esc_html__( 'This is the tooltip', 'simpleaddon' ),
+                    //     'choices' => array(
+                    //         array(
+                    //             'label' => esc_html__( 'First Choice', 'simpleaddon' ),
+                    //             'name'  => 'first',
+                    //         ),
+                    //         array(
+                    //             'label' => esc_html__( 'Second Choice', 'simpleaddon' ),
+                    //             'name'  => 'second',
+                    //         ),
+                    //         array(
+                    //             'label' => esc_html__( 'Third Choice', 'simpleaddon' ),
+                    //             'name'  => 'third',
+                    //         ),
+                    //     ),
+                    // ),
+                    // array(
+                    //     'label'   => esc_html__( 'My Radio Buttons', 'simpleaddon' ),
+                    //     'type'    => 'radio',
+                    //     'name'    => 'myradiogroup',
+                    //     'tooltip' => esc_html__( 'This is the tooltip', 'simpleaddon' ),
+                    //     'choices' => array(
+                    //         array(
+                    //             'label' => esc_html__( 'First Choice', 'simpleaddon' ),
+                    //         ),
+                    //         array(
+                    //             'label' => esc_html__( 'Second Choice', 'simpleaddon' ),
+                    //         ),
+                    //         array(
+                    //             'label' => esc_html__( 'Third Choice', 'simpleaddon' ),
+                    //         ),
+                    //     ),
+                    // ),
+                    // array(
+                    //     'label'      => esc_html__( 'My Horizontal Radio Buttons', 'simpleaddon' ),
+                    //     'type'       => 'radio',
+                    //     'horizontal' => true,
+                    //     'name'       => 'myradiogrouph',
+                    //     'tooltip'    => esc_html__( 'This is the tooltip', 'simpleaddon' ),
+                    //     'choices'    => array(
+                    //         array(
+                    //             'label' => esc_html__( 'First Choice', 'simpleaddon' ),
+                    //         ),
+                    //         array(
+                    //             'label' => esc_html__( 'Second Choice', 'simpleaddon' ),
+                    //         ),
+                    //         array(
+                    //             'label' => esc_html__( 'Third Choice', 'simpleaddon' ),
+                    //         ),
+                    //     ),
+                    // ),
                     array(
-                        'label'   => esc_html__( 'My checkbox', 'simpleaddon' ),
-                        'type'    => 'checkbox',
-                        'name'    => 'enabled',
-                        'tooltip' => esc_html__( 'This is the tooltip', 'simpleaddon' ),
-                        'choices' => array(
-                            array(
-                                'label' => esc_html__( 'Enabled', 'simpleaddon' ),
-                                'name'  => 'enabled',
-                            ),
-                        ),
-                    ),
-                    array(
-                        'label'   => esc_html__( 'My checkboxes', 'simpleaddon' ),
-                        'type'    => 'checkbox',
-                        'name'    => 'checkboxgroup',
-                        'tooltip' => esc_html__( 'This is the tooltip', 'simpleaddon' ),
-                        'choices' => array(
-                            array(
-                                'label' => esc_html__( 'First Choice', 'simpleaddon' ),
-                                'name'  => 'first',
-                            ),
-                            array(
-                                'label' => esc_html__( 'Second Choice', 'simpleaddon' ),
-                                'name'  => 'second',
-                            ),
-                            array(
-                                'label' => esc_html__( 'Third Choice', 'simpleaddon' ),
-                                'name'  => 'third',
-                            ),
-                        ),
-                    ),
-                    array(
-                        'label'   => esc_html__( 'My Radio Buttons', 'simpleaddon' ),
-                        'type'    => 'radio',
-                        'name'    => 'myradiogroup',
-                        'tooltip' => esc_html__( 'This is the tooltip', 'simpleaddon' ),
-                        'choices' => array(
-                            array(
-                                'label' => esc_html__( 'First Choice', 'simpleaddon' ),
-                            ),
-                            array(
-                                'label' => esc_html__( 'Second Choice', 'simpleaddon' ),
-                            ),
-                            array(
-                                'label' => esc_html__( 'Third Choice', 'simpleaddon' ),
-                            ),
-                        ),
-                    ),
-                    array(
-                        'label'      => esc_html__( 'My Horizontal Radio Buttons', 'simpleaddon' ),
-                        'type'       => 'radio',
-                        'horizontal' => true,
-                        'name'       => 'myradiogrouph',
-                        'tooltip'    => esc_html__( 'This is the tooltip', 'simpleaddon' ),
-                        'choices'    => array(
-                            array(
-                                'label' => esc_html__( 'First Choice', 'simpleaddon' ),
-                            ),
-                            array(
-                                'label' => esc_html__( 'Second Choice', 'simpleaddon' ),
-                            ),
-                            array(
-                                'label' => esc_html__( 'Third Choice', 'simpleaddon' ),
-                            ),
-                        ),
-                    ),
-                    array(
-                        'label'   => esc_html__( 'My Dropdown', 'simpleaddon' ),
+                        'label'   => esc_html__( 'CSV export frequency', 'csvexport' ),
                         'type'    => 'select',
                         'name'    => 'mydropdown',
-                        'tooltip' => esc_html__( 'This is the tooltip', 'simpleaddon' ),
+                        'tooltip' => esc_html__( 'This determines how frequently the export will be run and emailed to you.', 'csvexport' ),
                         'choices' => array(
                             array(
-                                'label' => esc_html__( 'First Choice', 'simpleaddon' ),
+                                'label' => esc_html__( 'Daily', 'csvexport' ),
                                 'value' => 'first',
                             ),
                             array(
-                                'label' => esc_html__( 'Second Choice', 'simpleaddon' ),
+                                'label' => esc_html__( 'Weekly', 'csvexport' ),
                                 'value' => 'second',
                             ),
                             array(
-                                'label' => esc_html__( 'Third Choice', 'simpleaddon' ),
+                                'label' => esc_html__( 'Monthly', 'csvexport' ),
                                 'value' => 'third',
                             ),
                         ),
                     ),
                     array(
-                        'label'             => esc_html__( 'My Text Box', 'simpleaddon' ),
+                        'label'             => esc_html__( 'Email Address', 'csvexport' ),
                         'type'              => 'text',
                         'name'              => 'mytext',
-                        'tooltip'           => esc_html__( 'This is the tooltip', 'simpleaddon' ),
+                        'tooltip'           => esc_html__( 'The csv will be sent to this email address', 'simpleaddon' ),
                         'class'             => 'medium',
                         'feedback_callback' => array( $this, 'is_valid_setting' ),
                     ),
