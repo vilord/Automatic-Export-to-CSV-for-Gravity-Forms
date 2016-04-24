@@ -38,10 +38,19 @@ function gf_simple_addon() {
 
 function gforms_automated_export() {
 
+	$output = "";
 	// STEP 1 go through the last day of entries, and write them to a csv file
+
 	$search_criteria['start_date'] = date('Y-m-d', time() - 60 * 60 * 24);
 	$search_criteria['end_date'] = date('Y-m-d', time() - 60 * 60 * 24); 
-	$all_form_entries = GFAPI::get_entries( 10, $search_criteria );
+	$all_form_entries = GFAPI::get_entries( 1, $search_criteria );
+
+
+	$form = GFAPI::get_form( 1 ); // get form by ID 
+
+	foreach( $form['fields'] as $field ) {
+		echo $field->label . ',' ;
+	}
 
 	$output = "" . "\r\n";
 
