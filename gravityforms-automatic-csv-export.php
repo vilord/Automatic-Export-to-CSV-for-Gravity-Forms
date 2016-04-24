@@ -10,6 +10,32 @@
 	License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 */
 
+
+define( 'GF_AUTOMATIC_CSV_VERSION', '0.1' );
+
+add_action( 'gform_loaded', array( 'GF_Automatic_Csv_Bootstrap', 'load' ), 5 );
+
+class GF_Automatic_Csv_Bootstrap {
+
+    public static function load() {
+
+        if ( ! method_exists( 'GFForms', 'include_addon_framework' ) ) {
+            return;
+        }
+
+         require_once( 'class-gf-automatic-csv-addon.php' );
+
+        GFAddOn::register( 'GFAutomaticCSVAddOn' );
+    }
+
+}
+
+function gf_simple_addon() {
+    return GFAutomaticCSVAddOn::get_instance();
+}
+
+
+
 function gforms_automated_export() {
 
 	// STEP 1 go through the last day of entries, and write them to a csv file
