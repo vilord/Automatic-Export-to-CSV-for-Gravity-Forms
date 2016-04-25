@@ -77,27 +77,23 @@ class GFAutomaticCSVAddOn extends GFAddOn {
         return $button;
     }
 
-    public function plugin_page() {
-        echo 'This page appears in the Forms menu';
-    }
-
-    public function plugin_settings_fields() {
-        return array(
-            array(
-                'title'  => esc_html__( 'Simple Add-On Settings', 'simpleaddon' ),
-                'fields' => array(
-                    array(
-                        'name'              => 'mytextbox',
-                        'tooltip'           => esc_html__( 'This is the tooltip', 'simpleaddon' ),
-                        'label'             => esc_html__( 'This is the label', 'simpleaddon' ),
-                        'type'              => 'text',
-                        'class'             => 'small',
-                        'feedback_callback' => array( $this, 'is_valid_setting' ),
-                    )
-                )
-            )
-        );
-    }
+    // public function plugin_settings_fields() {
+    //     return array(
+    //         array(
+    //             'title'  => esc_html__( 'Simple Add-On Settings', 'csvexport' ),
+    //             'fields' => array(
+    //                 array(
+    //                     'name'              => 'mytextbox',
+    //                     'tooltip'           => esc_html__( 'This is the tooltip', 'csvexport' ),
+    //                     'label'             => esc_html__( 'This is the label', 'csvexport' ),
+    //                     'type'              => 'text',
+    //                     'class'             => 'small',
+    //                     'feedback_callback' => array( $this, 'is_valid_setting' ),
+    //                 )
+    //             )
+    //         )
+    //     );
+    // }
 
     public function form_settings_fields( $form ) {
         return array(
@@ -145,7 +141,7 @@ class GFAutomaticCSVAddOn extends GFAddOn {
                         'label'             => esc_html__( 'Email Address', 'csvexport' ),
                         'type'              => 'text',
                         'name'              => 'email_address',
-                        'tooltip'           => esc_html__( 'The csv will be sent to this email address', 'simpleaddon' ),
+                        'tooltip'           => esc_html__( 'The csv will be sent to this email address', 'csvexport' ),
                         'class'             => 'medium',
                         // 'feedback_callback' => array( $this, 'is_valid_setting' ),
                     ),
@@ -155,7 +151,7 @@ class GFAutomaticCSVAddOn extends GFAddOn {
     }
 
     public function settings_my_custom_field_type( $field, $echo = true ) {
-        echo '<div>' . esc_html__( 'My custom field contains a few settings:', 'simpleaddon' ) . '</div>';
+        echo '<div>' . esc_html__( 'My custom field contains a few settings:', 'csvexport' ) . '</div>';
 
         // get the text field settings from the main field and then render the text field
         $text_field = $field['args']['text'];
