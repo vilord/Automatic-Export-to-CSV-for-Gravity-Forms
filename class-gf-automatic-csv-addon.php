@@ -105,7 +105,7 @@ class GFAutomaticCSVAddOn extends GFAddOn {
                 'title'  => esc_html__( 'Simple Form Settings', 'csvexport' ),
                 'fields' => array(
                     array(
-                        'label'   => esc_html__( 'Automatic CSV Export Form Settings', 'csvexport' ),
+                        'label'   => esc_html__( 'Enable Automatic export', 'csvexport' ),
                         'type'    => 'checkbox',
                         'name'    => 'enable_export',
                         'tooltip' => esc_html__( 'This will enable the automatic export of csv for this form.', 'csvexport' ),

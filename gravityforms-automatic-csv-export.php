@@ -65,9 +65,6 @@ foreach ( $forms as $form ) {
 
 	$form_id = $form['id'];
 
-
-	
-
 	if ( ! wp_next_scheduled( 'csv_task_hook_' . $form_id ) ) {
 		
 		$form = GFAPI::get_form( $form_id ); 
@@ -77,22 +74,20 @@ foreach ( $forms as $form ) {
 		wp_schedule_event( time(), $frequency, 'csv_task_hook_' . $form_id );
 	}
 
-	add_action( 'csv_task_hook_' . $form_id , 'gforms_automated_export', $form_id );
+	add_action( 'csv_task_hook_' . $form_id , 'gforms_automated_export' );
 
 }
 
 
 
-
-
-
 function gforms_automated_export() {
 
-	// Go through the entries that match search criteria, and write them to a csv file
+	
 	$output = "";
 
 	$form_id = substr( current_filter() , -1);
 
+	// Go through the entries that match search criteria
 	$search_criteria['start_date'] = date('Y-m-d', time() - 60 * 60 * 24);
 	$search_criteria['end_date'] = date('Y-m-d', time() - 60 * 60 * 24); 
 	$all_form_entries = GFAPI::get_entries( $form_id ); // ADD search criteria back in !!!!
@@ -125,7 +120,7 @@ function gforms_automated_export() {
 	
 	// To-do: Use standard WP function to upload to wp-content directory
 
-	$myfile = fopen("wp-content/uploads/" . date('Y-m-d-gA') . ".csv", "w") or die("Unable to open file!");
+	$myfile = fopen("wp-content/uploads/form_" . $form_id . '_' . date('Y-m-d-giA') . ".csv", "w") or die("Unable to open file!");
 	$csv_contents = $output;
 	
 	fwrite($myfile, $csv_contents);
@@ -135,7 +130,7 @@ function gforms_automated_export() {
 	$email_address = $form['gravityforms-automatic-csv-export']['email_address'];
 
 	// Send an email using the latest csv file
-	$attachments = 'wp-content/uploads/' . date('Y-m-d-gA') . '.csv';
+	$attachments = 'wp-content/uploads/' . date('Y-m-d-giA') . '.csv';
 	$headers[] = 'From: WordPress <you@yourdomain.org>';
 	//$headers[] = 'Bcc: bcc@yourdomain.com';
 	wp_mail( $email_address , 'Automatic Form Export', 'CSV export is attached to this message', $headers, $attachments);
