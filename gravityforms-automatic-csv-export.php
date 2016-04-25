@@ -58,7 +58,32 @@ add_filter( 'cron_schedules', 'my_add_monthly' );
 
 
 
-function gforms_automated_export() {
+
+
+$forms = GFAPI::get_forms();
+
+foreach ( $forms as $form ) {
+	$form_id = $form['id'];
+
+	if ( ! wp_next_scheduled( 'csv_task_hook_' . $form_id ) ) {
+		
+		$form = GFAPI::get_form( $form_id ); 
+
+		$frequency = $form['gravityforms-automatic-csv-export']['csv_export_frequency'];
+		
+		wp_schedule_event( time(), $frequency, 'csv_task_hook_' . $form_id );
+	}
+
+add_action( 'csv_task_hook', 'gforms_automated_export' );
+
+}
+
+
+
+
+
+
+function gforms_automated_export($form_id) {
 
 	// Go through the entries that match search criteria, and write them to a csv file
 	$output = "";
@@ -117,14 +142,6 @@ function gforms_automated_export() {
 // add_shortcode( 'export_csv', 'gforms_automated_export');
 
 
-if ( ! wp_next_scheduled( 'csv_task_hook' ) ) {
-	$form = GFAPI::get_form( 1 ); 
-	$frequency = $form['gravityforms-automatic-csv-export']['csv_export_frequency'];
-	
 
-	wp_schedule_event( time(), $frequency, 'csv_task_hook' );
-}
-
-add_action( 'csv_task_hook', 'gforms_automated_export' );
 
 
