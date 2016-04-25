@@ -35,6 +35,28 @@ function gf_simple_addon() {
 }
 
 
+function my_add_weekly( $schedules ) {
+	// add a 'weekly' schedule to the existing set
+	$schedules['weekly'] = array(
+		'interval' => 604800,
+		'display' => __('Once Weekly')
+	);
+	return $schedules;
+}
+add_filter( 'cron_schedules', 'my_add_weekly' ); 
+
+
+function my_add_monthly( $schedules ) {
+	// add a 'weekly' schedule to the existing set
+	$schedules['monthly'] = array(
+		'interval' => 604800 * 4,
+		'display' => __('Once Monthly')
+	);
+	return $schedules;
+}
+add_filter( 'cron_schedules', 'my_add_monthly' ); 
+
+
 
 function gforms_automated_export() {
 
@@ -100,11 +122,17 @@ function gforms_automated_export() {
 	//}
 	
 }
+
+
 // add_shortcode( 'export_csv', 'gforms_automated_export');
 
 
 if ( ! wp_next_scheduled( 'csv_task_hook' ) ) {
-  wp_schedule_event( time(), 'daily', 'csv_task_hook' );
+	$form = GFAPI::get_form( 1 ); 
+	$frequency = $form['gravityforms-automatic-csv-export']['csv_export_frequency'];
+	
+
+	wp_schedule_event( time(), $frequency, 'csv_task_hook' );
 }
 
 add_action( 'csv_task_hook', 'gforms_automated_export' );

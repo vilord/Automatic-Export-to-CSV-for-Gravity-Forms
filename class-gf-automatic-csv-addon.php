@@ -124,6 +124,10 @@ class GFAutomaticCSVAddOn extends GFAddOn {
                         'tooltip' => esc_html__( 'This determines how frequently the export will be run and emailed to you.', 'csvexport' ),
                         'choices' => array(
                             array(
+                                'label' => esc_html__( 'Hourly', 'csvexport' ),
+                                'value' => 'hourly',
+                            ),
+                            array(
                                 'label' => esc_html__( 'Daily', 'csvexport' ),
                                 'value' => 'daily',
                             ),
