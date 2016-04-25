@@ -60,14 +60,12 @@ add_filter( 'cron_schedules', 'my_add_monthly' );
 
 function gforms_automated_export() {
 
-
 	// Go through the entries that match search criteria, and write them to a csv file
 	$output = "";
 
 	$search_criteria['start_date'] = date('Y-m-d', time() - 60 * 60 * 24);
 	$search_criteria['end_date'] = date('Y-m-d', time() - 60 * 60 * 24); 
-	$all_form_entries = GFAPI::get_entries( 1 ); // add search criteria back in
-
+	$all_form_entries = GFAPI::get_entries( 1 ); // ADD search criteria back in !!!!
 
 	$form = GFAPI::get_form( 1 ); // get form by ID 
 
@@ -106,20 +104,12 @@ function gforms_automated_export() {
 
 	$email_address = $form['gravityforms-automatic-csv-export']['email_address'];
 
-	//Is the current timestamp greater than the time the last export was sent, plus one day? it has to be more than 24 hours for exports to get emailed.
+	// Send an email using the latest csv file
+	$attachments = 'wp-content/uploads/' . date('Y-m-d-gA') . '.csv';
+	$headers[] = 'From: WordPress <you@yourdomain.org>';
+	//$headers[] = 'Bcc: bcc@yourdomain.com';
+	wp_mail( $email_address , 'Automatic Form Export', 'CSV export is attached to this message', $headers, $attachments);
 
-	//if ( time() > ( get_option( 'gform_last_export_sent' ) + 86400) ) {
-
-		// Send an email using the latest csv file
-		$attachments = 'wp-content/uploads/' . date('Y-m-d-gA') . '.csv';
-		$headers[] = 'From: WordPress <you@yourdomain.org>';
-		//$headers[] = 'Bcc: bcc@yourdomain.com';
-		wp_mail( $email_address , 'Automatic Form Export', 'CSV export is attached to this message', $headers, $attachments);
-
-		$current_timestamp = time();
-		update_option('gforms_last_export_sent', $current_timestamp);
-
-	//}
 	
 }
 
