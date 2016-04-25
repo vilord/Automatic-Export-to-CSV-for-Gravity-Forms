@@ -59,11 +59,14 @@ add_filter( 'cron_schedules', 'my_add_monthly' );
 
 
 
-
 $forms = GFAPI::get_forms();
 
 foreach ( $forms as $form ) {
+
 	$form_id = $form['id'];
+
+
+	
 
 	if ( ! wp_next_scheduled( 'csv_task_hook_' . $form_id ) ) {
 		
@@ -74,7 +77,7 @@ foreach ( $forms as $form ) {
 		wp_schedule_event( time(), $frequency, 'csv_task_hook_' . $form_id );
 	}
 
-add_action( 'csv_task_hook', 'gforms_automated_export' );
+	add_action( 'csv_task_hook_' . $form_id , 'gforms_automated_export', $form_id );
 
 }
 
@@ -83,16 +86,18 @@ add_action( 'csv_task_hook', 'gforms_automated_export' );
 
 
 
-function gforms_automated_export($form_id) {
+function gforms_automated_export() {
 
 	// Go through the entries that match search criteria, and write them to a csv file
 	$output = "";
 
+	$form_id = substr( current_filter() , -1);
+
 	$search_criteria['start_date'] = date('Y-m-d', time() - 60 * 60 * 24);
 	$search_criteria['end_date'] = date('Y-m-d', time() - 60 * 60 * 24); 
-	$all_form_entries = GFAPI::get_entries( 1 ); // ADD search criteria back in !!!!
+	$all_form_entries = GFAPI::get_entries( $form_id ); // ADD search criteria back in !!!!
 
-	$form = GFAPI::get_form( 1 ); // get form by ID 
+	$form = GFAPI::get_form( $form_id ); // get form by ID 
 
 	foreach( $form['fields'] as $field ) {
 		$output .= preg_replace('/[.,]/', '', $field->label) . ',' ;
