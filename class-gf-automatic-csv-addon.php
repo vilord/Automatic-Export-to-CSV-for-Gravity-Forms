@@ -110,6 +110,8 @@ class GFAutomaticCSVAddOn extends GFAddOn {
     //     );
     // }
 
+    do_action( 'gforms_automated_export_pre_save_settings' );
+
     public function form_settings_fields( $form ) {
         return array(
             array(
