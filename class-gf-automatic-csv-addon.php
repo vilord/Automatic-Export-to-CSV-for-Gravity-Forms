@@ -27,6 +27,21 @@ class GFAutomaticCSVAddOn extends GFAddOn {
         add_filter( 'gform_submit_button', array( $this, 'form_submit_button' ), 10, 2 );
     }
 
+    protected function init_admin() {
+        parent::init_admin();
+
+         $log_file = ABSPATH . '/gf_saved_forms.log';
+    $f = fopen( $log_file, 'a' );
+    $user = wp_get_current_user();
+    if ( $is_new ) {
+        fwrite( $f, date( 'c' ) . " - Form created by {$user->user_login}. Form ID: {$form["id"]}. n" );
+    } else {
+        fwrite( $f, date( 'c' ) . " - Form updated by {$user->user_login}. Form ID: {$form["id"]}. n" );
+    }
+    fclose( $f );
+
+    }
+
     public function scripts() {
         $scripts = array(
             array(

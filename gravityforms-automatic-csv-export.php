@@ -79,12 +79,9 @@ foreach ( $forms as $form ) {
 }
 
 
-
 function gforms_automated_export() {
 
-	
 	$output = "";
-
 	$form_id = substr( current_filter() , -1);
 
 	// Go through the entries that match search criteria
@@ -108,13 +105,10 @@ function gforms_automated_export() {
 				$output .= preg_replace('/[.,]/', '', $entry[$i]) . ',';
 
 			}
-			
 		}	
-
 		$output .= ','; 
 		$output .= "\r\n";
 	}
-	
 	
 	$upload_dir = wp_upload_dir();
 	
@@ -134,14 +128,16 @@ function gforms_automated_export() {
 	$headers[] = 'From: WordPress <you@yourdomain.org>';
 	//$headers[] = 'Bcc: bcc@yourdomain.com';
 	wp_mail( $email_address , 'Automatic Form Export', 'CSV export is attached to this message', $headers, $attachments);
-
-	
 }
 
 
 // add_shortcode( 'export_csv', 'gforms_automated_export');
 
 
+function stupid_test() {
+	
+}
 
+add_action('gform_form_settings_gravityforms-automatic-csv-export', 'stupid_test', 1 , 1 );
 
 
