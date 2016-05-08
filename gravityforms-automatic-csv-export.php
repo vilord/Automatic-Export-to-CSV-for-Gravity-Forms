@@ -1,15 +1,16 @@
 <?php
-
 /*
-	Plugin Name: Gravity Forms Automatic Export to CSV
-	Plugin URI:
-	Description: Simple way to automatically email with CSV export of your Gravity Form entries on a schedule.
-	Version: 0.1
-	Author: Alex Cavender
-	License: GPL-2.0+
-	License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+Plugin Name: Gravity Forms Automatic Export to CSV
+Plugin URI:
+Description: Simple way to automatically email with CSV export of your Gravity Form entries on a schedule.
+Version: 0.1
+Author: Alex Cavender
+Author URI: 
+License: GPL-2.0+
+License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 */
 
+defined( 'ABSPATH' ) or die();
 
 define( 'GF_AUTOMATIC_CSV_VERSION', '0.1' );
 
@@ -41,7 +42,7 @@ function gf_simple_addon() {
 	* @since 0.1
 	*
 	* @param array $schedules.
-	* @param array $schedules.
+	* @return array $schedules.
 */
 function my_add_weekly( $schedules ) {
 	// add a 'weekly' schedule to the existing set
@@ -59,7 +60,7 @@ add_filter( 'cron_schedules', 'my_add_weekly' );
 	* @since 0.1
 	*
 	* @param array $schedules.
-	* @param array $schedules.
+	* @return array $schedules.
 */
 function my_add_monthly( $schedules ) {
 	// add a 'weekly' schedule to the existing set
@@ -72,26 +73,37 @@ function my_add_monthly( $schedules ) {
 add_filter( 'cron_schedules', 'my_add_monthly' ); 
 
 
+/**
+	* Create schedules for each enabled form 
+	*
+	* @since 0.1
+	*
+	* @param 
+	* @return 
+*/
+function gforms_create_schedules(){
 
+	$forms = GFAPI::get_forms();
 
-$forms = GFAPI::get_forms();
+	foreach ( $forms as $form ) {
 
-foreach ( $forms as $form ) {
+		$form_id = $form['id'];
 
-	$form_id = $form['id'];
+		if ( ! wp_next_scheduled( 'csv_task_hook_' . $form_id ) ) {
+			
+			$form = GFAPI::get_form( $form_id ); 
 
-	if ( ! wp_next_scheduled( 'csv_task_hook_' . $form_id ) ) {
-		
-		$form = GFAPI::get_form( $form_id ); 
+			$frequency = $form['gravityforms-automatic-csv-export']['csv_export_frequency'];
+			
+			wp_schedule_event( time(), $frequency, 'csv_task_hook_' . $form_id );
+		}
 
-		$frequency = $form['gravityforms-automatic-csv-export']['csv_export_frequency'];
-		
-		wp_schedule_event( time(), $frequency, 'csv_task_hook_' . $form_id );
+		add_action( 'csv_task_hook_' . $form_id , 'gforms_automated_export' );
+
 	}
-
-	add_action( 'csv_task_hook_' . $form_id , 'gforms_automated_export' );
-
 }
+
+
 
 function functesting() {
 	if ( ! function_exists( 'get_current_screen' ) ){
@@ -110,8 +122,8 @@ function functesting() {
 	*
 	* @since 0.1
 	*
-	* @param NULL
-	* @param NULL
+	* @param void
+	* @return void 
 */
 function gforms_automated_export() {
 
