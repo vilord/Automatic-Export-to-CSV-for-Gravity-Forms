@@ -103,7 +103,7 @@ function functesting() {
 	}
 }
 
-add_action( 'the_post', 'functesting');
+// add_action( 'admin_init', 'functesting');
 
 /**
 	* Run automated
