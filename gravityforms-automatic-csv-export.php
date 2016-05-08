@@ -35,6 +35,14 @@ function gf_simple_addon() {
 }
 
 
+/**
+	* Set up weekly schedule as an interval
+	*
+	* @since 0.1
+	*
+	* @param array $schedules.
+	* @param array $schedules.
+*/
 function my_add_weekly( $schedules ) {
 	// add a 'weekly' schedule to the existing set
 	$schedules['weekly'] = array(
@@ -45,7 +53,14 @@ function my_add_weekly( $schedules ) {
 }
 add_filter( 'cron_schedules', 'my_add_weekly' ); 
 
-
+/**
+	* Set up monthly schedule as an interval
+	*
+	* @since 0.1
+	*
+	* @param array $schedules.
+	* @param array $schedules.
+*/
 function my_add_monthly( $schedules ) {
 	// add a 'weekly' schedule to the existing set
 	$schedules['monthly'] = array(
@@ -78,7 +93,26 @@ foreach ( $forms as $form ) {
 
 }
 
+function functesting() {
+	if ( ! function_exists( 'get_current_screen' ) ){
+		return;
+	}
+	else {
+		$screen = get_current_screen();
+		print_r( "<h1>Current Screen is " . $screen . " </h1>" );
+	}
+}
 
+add_action( 'the_post', 'functesting');
+
+/**
+	* Run automated
+	*
+	* @since 0.1
+	*
+	* @param NULL
+	* @param NULL
+*/
 function gforms_automated_export() {
 
 	$output = "";
@@ -134,10 +168,4 @@ function gforms_automated_export() {
 // add_shortcode( 'export_csv', 'gforms_automated_export');
 
 
-function stupid_test() {
-	
-}
-
-add_action('gform_form_settings_gravityforms-automatic-csv-export', 'stupid_test', 1 , 1 );
-
-
+// add_action('gform_form_settings_gravityforms-automatic-csv-export', 'stupid_test', 1 , 1 );
