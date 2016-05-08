@@ -91,6 +91,7 @@ function gforms_create_schedules(){
 
 		$enabled = $form['gravityforms-automatic-csv-export']['enabled'];
 
+		
 		if ( $enabled == 1 ) {
 
 			if ( ! wp_next_scheduled( 'csv_task_hook_' . $form_id ) ) {
@@ -106,7 +107,7 @@ function gforms_create_schedules(){
 
 		}
 		else {
-
+			
 			$timestamp = wp_next_scheduled( 'csv_task_hook_' . $form_id );
 			wp_unschedule_event( $timestamp, 'csv_task_hook_' . $form_id );
 
