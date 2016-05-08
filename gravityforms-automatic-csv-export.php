@@ -89,19 +89,37 @@ function gforms_create_schedules(){
 
 		$form_id = $form['id'];
 
-		if ( ! wp_next_scheduled( 'csv_task_hook_' . $form_id ) ) {
-			
-			$form = GFAPI::get_form( $form_id ); 
+		$enabled = $form['gravityforms-automatic-csv-export']['enabled'];
 
-			$frequency = $form['gravityforms-automatic-csv-export']['csv_export_frequency'];
-			
-			wp_schedule_event( time(), $frequency, 'csv_task_hook_' . $form_id );
+		if ( $enabled == 1 ) {
+
+			if ( ! wp_next_scheduled( 'csv_task_hook_' . $form_id ) ) {
+				
+				$form = GFAPI::get_form( $form_id ); 
+
+				$frequency = $form['gravityforms-automatic-csv-export']['csv_export_frequency'];
+				
+				
+				wp_schedule_event( time(), $frequency, 'csv_task_hook_' . $form_id );
+				
+			}
+
 		}
+		else {
+
+			$timestamp = wp_next_scheduled( 'csv_task_hook_' . $form_id );
+			wp_unschedule_event( $timestamp, 'csv_task_hook_' . $form_id );
+
+		}
+
+
 
 		add_action( 'csv_task_hook_' . $form_id , 'gforms_automated_export' );
 
 	}
 }
+
+add_action( 'admin_init', 'gforms_create_schedules' );
 
 
 
