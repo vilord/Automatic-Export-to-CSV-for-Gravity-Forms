@@ -159,7 +159,7 @@ class GravityFormsAutomaticCSVExport {
 		$form = GFAPI::get_form( $form_id ); // get form by ID 
 
 		foreach( $form['fields'] as $field ) {
-			$output .= preg_replace('/[.,]/', '', $field->label) . ',' ;
+			$output .= preg_replace('/[,]/', '', $field->label) . ',' ;
 		}
 
 		$output .= "\r\n";
