@@ -1,7 +1,7 @@
 1. Requirements
 
-This plugin requires a WordPress install with the Gravity Forms plugin activated, running on any server that can send email.
-If you don't have Gravity Forms yet, purchase a license from http://www.gravityforms.com/
+	This plugin requires a WordPress install with the Gravity Forms plugin activated, running on any server that can send email.
+	If you don't have Gravity Forms yet, purchase a license from http://www.gravityforms.com/
 
 
 2. Installation
@@ -22,10 +22,7 @@ If you don't have Gravity Forms yet, purchase a license from http://www.gravityf
 
 3. Configuration
 
-	Once the plugin is installed and activated, you can enable an automated export for any of your forms.
-
-	( If you haven't created any forms in Gravity Forms yet, you'll want to star by creating at least one form. )
-
+	Once the plugin is installed and activated, you can enable an automated export for any of your forms. If you haven't created any forms in Gravity Forms yet, you'll want to star by creating at least one form.
 
 	1. From the WordPress dashboard, click on "Forms"
 	2. Find the form you want to set up an automated export for.
