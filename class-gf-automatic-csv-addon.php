@@ -102,7 +102,6 @@ class GFAutomaticCSVAddOn extends GFAddOn {
     // }
 
 
-
     public function form_settings_fields( $form ) {
         return array(
             array(
