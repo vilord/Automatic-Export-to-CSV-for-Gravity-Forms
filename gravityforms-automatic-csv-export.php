@@ -5,7 +5,7 @@ Plugin URI:
 Description: Simple way to automatically email with CSV export of your Gravity Form entries on a schedule.
 Version: 0.1
 Author: Alex Cavender
-Author URI: 
+Author URI: http://alexcavender.com
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 */
@@ -25,8 +25,9 @@ class GravityFormsAutomaticCSVExport {
 		if ( class_exists( 'GFAPI' ) ) {
 			add_filter( 'cron_schedules', array($this, 'my_add_weekly' ) ); 
 			add_filter( 'cron_schedules', array($this, 'my_add_monthly' ) ); 
-
 			add_action( 'admin_init', array($this, 'gforms_create_schedules' ) );
+
+			add_action( 'csv_export_1' , array($this, 'gforms_automated_export' ) );
 		}
 	}
 	/**
