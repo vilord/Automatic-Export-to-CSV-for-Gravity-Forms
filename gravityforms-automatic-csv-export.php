@@ -169,7 +169,7 @@ class GravityFormsAutomaticCSVExport {
 			for ( $i = 1; $i < 100; $i++ ){
 				if ( array_key_exists( $i, $entry ) ) {
 		
-					$output .= preg_replace('/[.,]/', '', $entry[$i]) . ',';
+					$output .= preg_replace('/[,]/', '', $entry[$i]) . ',';
 
 				}
 			}	
