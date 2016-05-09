@@ -83,24 +83,6 @@ class GFAutomaticCSVAddOn extends GFAddOn {
         return $button;
     }
 
-    // public function plugin_settings_fields() {
-    //     return array(
-    //         array(
-    //             'title'  => esc_html__( 'Simple Add-On Settings', 'csvexport' ),
-    //             'fields' => array(
-    //                 array(
-    //                     'name'              => 'mytextbox',
-    //                     'tooltip'           => esc_html__( 'This is the tooltip', 'csvexport' ),
-    //                     'label'             => esc_html__( 'This is the label', 'csvexport' ),
-    //                     'type'              => 'text',
-    //                     'class'             => 'small',
-    //                     'feedback_callback' => array( $this, 'is_valid_setting' ),
-    //                 )
-    //             )
-    //         )
-    //     );
-    // }
-
 
     public function form_settings_fields( $form ) {
         return array(
@@ -116,6 +98,28 @@ class GFAutomaticCSVAddOn extends GFAddOn {
                             array(
                                 'label' => esc_html__( 'Enabled', 'csvexport' ),
                                 'name'  => 'enabled',
+                            ),
+                        ),
+                    ),
+
+
+                    array(
+                        'label'   => esc_html__( 'Search Criteria', 'csvexport' ),
+                        'type'    => 'select',
+                        'name'    => 'search_criteria',
+                        'tooltip' => esc_html__( 'Choose the search criteria (yesterday, last seven days) for your export.', 'csvexport' ),
+                        'choices' => array(
+                            array(
+                                'label' => esc_html__( 'Previous Day', 'csvexport' ),
+                                'value'  => 'previous_day',
+                            ),
+                            array(
+                                'label' => esc_html__( 'Previous Week', 'csvexport' ),
+                                'value'  => 'previous_week',
+                            ),
+                            array(
+                                'label' => esc_html__( 'Previous Month', 'csvexport' ),
+                                'value'  => 'previous_month',
                             ),
                         ),
                     ),
@@ -156,21 +160,4 @@ class GFAutomaticCSVAddOn extends GFAddOn {
             ),
         );
     }
-
-    public function settings_my_custom_field_type( $field, $echo = true ) {
-        echo '<div>' . esc_html__( 'My custom field contains a few settings:', 'csvexport' ) . '</div>';
-
-        // get the text field settings from the main field and then render the text field
-        $text_field = $field['args']['text'];
-        $this->settings_text( $text_field );
-
-        // get the checkbox field settings from the main field and then render the checkbox field
-        $checkbox_field = $field['args']['checkbox'];
-        $this->settings_checkbox( $checkbox_field );
-    }
-
-    public function is_valid_setting( $value ) {
-        return strlen( $value ) < 10;
-    }
-
 }
