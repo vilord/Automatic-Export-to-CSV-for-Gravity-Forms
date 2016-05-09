@@ -14,13 +14,20 @@ defined( 'ABSPATH' ) or die();
 
 define( 'GF_AUTOMATIC_CSV_VERSION', '0.1' );
 
+
+
 class GravityFormsAutomaticCSVExport {
 
-	public function __construct() {
-		add_filter( 'cron_schedules', array($this, 'my_add_weekly' ) ); 
-		add_filter( 'cron_schedules', array($this, 'my_add_monthly' ) ); 
+	//Make sure Gforms is installed and API available
+	
 
-		add_action( 'admin_init', array($this, 'gforms_create_schedules' ) );
+	public function __construct() {
+		if ( class_exists( 'GFAPI' ) ) {
+			add_filter( 'cron_schedules', array($this, 'my_add_weekly' ) ); 
+			add_filter( 'cron_schedules', array($this, 'my_add_monthly' ) ); 
+
+			add_action( 'admin_init', array($this, 'gforms_create_schedules' ) );
+		}
 	}
 	/**
 		* Set up weekly schedule as an interval
@@ -68,42 +75,38 @@ class GravityFormsAutomaticCSVExport {
 	*/
 	public function gforms_create_schedules(){
 
-		//Make sure Gforms is installed and API available
-		if ( class_exists( 'GFAPI' ) ) {
+		$forms = GFAPI::get_forms();
 
-			$forms = GFAPI::get_forms();
+		foreach ( $forms as $form ) {
 
-			foreach ( $forms as $form ) {
+			$form_id = $form['id'];
 
-				$form_id = $form['id'];
+			$enabled = $form['gravityforms-automatic-csv-export']['enabled'];
 
-				$enabled = $form['gravityforms-automatic-csv-export']['enabled'];
+			if ( $enabled == 1 ) {
 
-				if ( $enabled == 1 ) {
+				if ( ! wp_next_scheduled( 'csv_export_' . $form_id ) ) {
+					
+					$form = GFAPI::get_form( $form_id ); 
 
-					if ( ! wp_next_scheduled( 'csv_export_' . $form_id ) ) {
-						
-						$form = GFAPI::get_form( $form_id ); 
-
-						$frequency = $form['gravityforms-automatic-csv-export']['csv_export_frequency'];
-						
-						wp_schedule_event( time(), $frequency, 'csv_export_' . $form_id );
-						
-					}
-
-				}
-				else {
-
-					$timestamp = wp_next_scheduled( 'csv_export_' . $form_id );
-					wp_unschedule_event( $timestamp, 'csv_export_' . $form_id );
-
+					$frequency = $form['gravityforms-automatic-csv-export']['csv_export_frequency'];
+					
+					wp_schedule_event( time(), $frequency, 'csv_export_' . $form_id );
+					
 				}
 
-				add_action( 'csv_export_' . $form_id , 'gforms_automated_export' );
+			}
+			else {
+
+				$timestamp = wp_next_scheduled( 'csv_export_' . $form_id );
+				wp_unschedule_event( $timestamp, 'csv_export_' . $form_id );
 
 			}
 
+			add_action( 'csv_export_' . $form_id , 'gforms_automated_export' );
+
 		}
+
 	}
 
 
