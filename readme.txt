@@ -28,14 +28,10 @@ If you don't have Gravity Forms yet, purchase a license from http://www.gravityf
 
 
 	1. From the WordPress dashboard, click on "Forms"
-
 	2. Find the form you want to set up an automated export for.
-
 	3. Hover over the form name and then go to Settings->Automatic CSV Export
-
 	4. From this Settings Panel, click "Enable Automatic export" checkbox to enable the automatic export for this form.
-
 	5. Choose a frequency for the export to occur (Hourly, Daily, Weekly, Monthly).
+	6. Enter the email address you would like the export sent to.
+	7. Click "Update Settings" to save your settings.
 
-
-4. FAQ 
