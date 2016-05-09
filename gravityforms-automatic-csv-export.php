@@ -1,13 +1,13 @@
 <?php
 /*
 Plugin Name: Gravity Forms Automatic Export to CSV
-Plugin URI:
+Plugin URI: http://gravitycsv.com
 Description: Simple way to automatically email with CSV export of your Gravity Form entries on a schedule.
 Version: 0.1
 Author: Alex Cavender
 Author URI: http://alexcavender.com
-License: GPL-2.0+
-License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+Text Domain: gravityforms-automatic-csv-export
+Domain Path: /languages
 */
 
 defined( 'ABSPATH' ) or die();
