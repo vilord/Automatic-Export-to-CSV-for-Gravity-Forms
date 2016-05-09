@@ -30,15 +30,7 @@ class GFAutomaticCSVAddOn extends GFAddOn {
     protected function init_admin() {
         parent::init_admin();
 
-         $log_file = ABSPATH . '/gf_saved_forms.log';
-    $f = fopen( $log_file, 'a' );
-    $user = wp_get_current_user();
-    if ( $is_new ) {
-        fwrite( $f, date( 'c' ) . " - Form created by {$user->user_login}. Form ID: {$form["id"]}. n" );
-    } else {
-        fwrite( $f, date( 'c' ) . " - Form updated by {$user->user_login}. Form ID: {$form["id"]}. n" );
-    }
-    fclose( $f );
+        
 
     }
 
@@ -110,7 +102,7 @@ class GFAutomaticCSVAddOn extends GFAddOn {
     //     );
     // }
 
-    do_action( 'gforms_automated_export_pre_save_settings' );
+    //do_action( 'gforms_automated_export_pre_save_settings' );
 
     public function form_settings_fields( $form ) {
         return array(
