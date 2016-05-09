@@ -27,7 +27,23 @@ class GravityFormsAutomaticCSVExport {
 			add_filter( 'cron_schedules', array($this, 'my_add_monthly' ) ); 
 			add_action( 'admin_init', array($this, 'gforms_create_schedules' ) );
 
-			add_action( 'csv_export_1' , array($this, 'gforms_automated_export' ) );
+
+			$forms = GFAPI::get_forms();
+
+			foreach ( $forms as $form ) {
+
+				$form_id = $form['id'];
+
+				$enabled = $form['gravityforms-automatic-csv-export']['enabled'];
+
+				if ( $enabled == 1 ) {
+
+					add_action( 'csv_export_' . $form_id , array($this, 'gforms_automated_export' ) );
+
+				}	
+			
+			}
+
 		}
 	}
 	/**
