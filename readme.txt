@@ -1,6 +1,7 @@
 1. Requirements
 
-This plugin requires a WordPress install with Gravity Forms activated, running on any server that can send email.
+This plugin requires a WordPress install with the Gravity Forms plugin activated, running on any server that can send email.
+If you don't have Gravity Forms yet, purchase a license from http://www.gravityforms.com/
 
 
 2. Installation
@@ -21,8 +22,20 @@ This plugin requires a WordPress install with Gravity Forms activated, running o
 
 3. Configuration
 
+	Once the plugin is installed and activated, you can enable an automated export for any of your forms.
 
-	Once the plugin is installed and activated, you can enable an automated export for your form
+	( If you haven't created any forms in Gravity Forms yet, you'll want to star by creating at least one form. )
 
 
-4. FAQ
+	1. From the WordPress dashboard, click on "Forms"
+
+	2. Find the form you want to set up an automated export for.
+
+	3. Hover over the form name and then go to Settings->Automatic CSV Export
+
+	4. From this Settings Panel, click "Enable Automatic export" checkbox to enable the automatic export for this form.
+
+	5. Choose a frequency for the export to occur (Hourly, Daily, Weekly, Monthly).
+
+
+4. FAQ 
