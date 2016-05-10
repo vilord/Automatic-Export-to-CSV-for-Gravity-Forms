@@ -151,12 +151,37 @@ class GravityFormsAutomaticCSVExport {
 		$output = "";
 		$form_id = substr( current_filter() , -1);
 
-		// Go through the entries that match search criteria
-		$search_criteria['start_date'] = date('Y-m-d', time() - 60 * 60 * 24);
-		$search_criteria['end_date'] = date('Y-m-d', time() - 60 * 60 * 24); 
-		$all_form_entries = GFAPI::get_entries( $form_id ); // ADD search criteria back in !!!!
-
 		$form = GFAPI::get_form( $form_id ); // get form by ID 
+
+		if ( $form['gravityforms-automatic-csv-export']['search_criteria'] == 'previous_day' ) {
+
+			$search_criteria['start_date'] = date('Y-m-d', time() - 60 * 60 * 24);
+		
+			$search_criteria['end_date'] = date('Y-m-d', time() - 60 * 60 * 24); 
+
+		}
+
+		if ( $form['gravityforms-automatic-csv-export']['search_criteria'] == 'previous_week' ) {
+
+			$search_criteria['start_date'] = date('Y-m-d', time() - 60 * 60 * 24);
+		
+			$search_criteria['end_date'] = date('Y-m-d', time() - 60 * 60 * 24); 
+
+		}
+
+		if ( $form['gravityforms-automatic-csv-export']['search_criteria'] == 'previous_month' ) {
+
+			$search_criteria['start_date'] = date('Y-m-d', time() - 60 * 60 * 24);
+		
+			$search_criteria['end_date'] = date('Y-m-d', time() - 60 * 60 * 24); 
+
+		}
+		
+		
+
+		$all_form_entries = GFAPI::get_entries( $form_id , $search_criteria); // ADD search criteria back in !!!!
+
+		
 
 		foreach( $form['fields'] as $field ) {
 			$output .= preg_replace('/[,]/', '', $field->label) . ',' ;

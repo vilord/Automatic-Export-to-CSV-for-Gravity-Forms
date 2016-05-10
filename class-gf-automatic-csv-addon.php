@@ -121,6 +121,10 @@ class GFAutomaticCSVAddOn extends GFAddOn {
                                 'label' => esc_html__( 'Previous Month', 'csvexport' ),
                                 'value'  => 'previous_month',
                             ),
+                            array(
+                                'label' => esc_html__( 'Everything', 'csvexport' ),
+                                'value'  => 'all',
+                            ),
                         ),
                     ),
 
