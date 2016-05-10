@@ -113,14 +113,14 @@ class GravityFormsAutomaticCSVExport {
 				}
 
 			}
+
 			else {
 
 				$timestamp = wp_next_scheduled( 'csv_export_' . $form_id );
+				
 				wp_unschedule_event( $timestamp, 'csv_export_' . $form_id );
 
 			}
-
-			add_action( 'csv_export_' . $form_id , 'gforms_automated_export' );
 
 		}
 
