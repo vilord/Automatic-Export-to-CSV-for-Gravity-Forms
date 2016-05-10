@@ -203,10 +203,12 @@ class GravityFormsAutomaticCSVExport {
 		}
 		
 		$upload_dir = wp_upload_dir();
-		
-		// To-do: Use standard WP function to upload to wp-content directory
 
-		$myfile = fopen("wp-content/uploads/form_" . $form_id . '_' . date('Y-m-d-giA') . ".csv", "w") or die("Unable to open file!");
+		$baseurl = $upload_dir['baseurl'];
+		
+		$path = $upload_dir['path'];
+
+		$myfile = fopen( $path . "/form_" . $form_id . '_' . date('Y-m-d-giA') . ".csv", "w") or die("Unable to open file!");
 		$csv_contents = $output;
 		
 		fwrite($myfile, $csv_contents);
