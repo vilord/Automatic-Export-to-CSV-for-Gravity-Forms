@@ -155,9 +155,9 @@ class GravityFormsAutomaticCSVExport {
 
 		if ( $form['gravityforms-automatic-csv-export']['search_criteria'] == 'previous_day' ) {
 
-			$search_criteria['start_date'] = date('Y-m-d', time() - 60 * 60 * 24);
+			$search_criteria['start_date'] = date('Y-m-d', time() - 60 * 60 * 24 );
 		
-			$search_criteria['end_date'] = date('Y-m-d', time() - 60 * 60 * 24); 
+			$search_criteria['end_date'] = date('Y-m-d', time() - 60 * 60 * 24 ); 
 
 		}
 
@@ -165,15 +165,15 @@ class GravityFormsAutomaticCSVExport {
 
 			$search_criteria['start_date'] = date('Y-m-d', time() - 604800000 );
 		
-			$search_criteria['end_date'] = date('Y-m-d', time() - 60 * 60 * 24); 
+			$search_criteria['end_date'] = date('Y-m-d', time() - 60 * 60 * 24 ); 
 
 		}
 
 		if ( $form['gravityforms-automatic-csv-export']['search_criteria'] == 'previous_month' ) {
 
-			$search_criteria['start_date'] = date('Y-m-d', time() - 2419200000);
+			$search_criteria['start_date'] = date('Y-m-d', time() - 2678400000 );
 		
-			$search_criteria['end_date'] = date('Y-m-d', time() - 60 * 60 * 24); 
+			$search_criteria['end_date'] = date('Y-m-d', time() - 60 * 60 * 24 ); 
 
 		}
 		
