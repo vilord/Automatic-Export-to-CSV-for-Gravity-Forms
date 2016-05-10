@@ -5,7 +5,7 @@ Plugin URI: http://gravitycsv.com
 Description: Simple way to automatically email with CSV export of your Gravity Form entries on a schedule.
 Version: 0.1
 Author: Alex Cavender
-Author URI: http://alexcavender.com
+Author URI: http://alexcavender.com/
 Text Domain: gravityforms-automatic-csv-export
 Domain Path: /languages
 */
@@ -218,7 +218,7 @@ class GravityFormsAutomaticCSVExport {
 		$email_address = $form['gravityforms-automatic-csv-export']['email_address'];
 
 		// Send an email using the latest csv file
-		$attachments = 'wp-content/uploads/form_' . $form_id . '_' . date('Y-m-d-giA') . '.csv';
+		$attachments = $path . '/form_' . $form_id . '_' . date('Y-m-d-giA') . '.csv';
 		$headers[] = 'From: WordPress <you@yourdomain.org>';
 		//$headers[] = 'Bcc: bcc@yourdomain.com';
 		wp_mail( $email_address , 'Automatic Form Export', 'CSV export is attached to this message', $headers, $attachments);
