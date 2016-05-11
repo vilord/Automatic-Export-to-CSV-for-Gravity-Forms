@@ -87,7 +87,7 @@ class GFAutomaticCSVAddOn extends GFAddOn {
     public function form_settings_fields( $form ) {
         return array(
             array(
-                'title'  => esc_html__( 'Simple Form Settings', 'csvexport' ),
+                'title'  => esc_html__( 'CSV Export Settings', 'csvexport' ),
                 'fields' => array(
                     array(
                         'label'   => esc_html__( 'Enable Automatic export', 'csvexport' ),
