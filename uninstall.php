@@ -13,17 +13,7 @@ if ( class_exists( 'GFAPI' ) ){
 
 		$form_id = $form['id'];
 
-		$enabled = $form['gravityforms-automatic-csv-export']['enabled'];
-
-		if ( $enabled == 1 ) {
-
-			if ( ! wp_next_scheduled( 'csv_export_' . $form_id ) ) {
-
-				wp_clear_scheduled_hook( 'csv_export_' . $form_id );
-				
-			}
-
-		}
+		wp_clear_scheduled_hook( 'csv_export_' . $form_id );
 
 	}
 
