@@ -1,6 +1,5 @@
 
-###Consider purchasing a 12 month support license. I'm selling this Support via GumRoad 
-https://gumroad.com/l/gformautocsv
+
 
 ##1. Requirements
 
@@ -37,5 +36,7 @@ Once the plugin is installed and activated, you can enable an automated export f
 7. Click "Update Settings" to save your settings.
 
 
-
+###If you get a lot of use out of this plugin, please consider purchasing a 12 month support license. It will support future development of this and other plugins! 
+I'm selling support via GumRoad 
+https://gumroad.com/l/gformautocsv
 
