@@ -1,5 +1,5 @@
 
-###If you use the plugin and enjoy it , I'm also selling Premium Support via GumRoad 
+###Consider purchasing a 12 month support license. I'm selling this Support via GumRoad 
 https://gumroad.com/l/gformautocsv
 
 ##1. Requirements
