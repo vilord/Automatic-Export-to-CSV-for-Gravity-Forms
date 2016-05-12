@@ -241,8 +241,3 @@ function gf_simple_addon() {
     return GFAutomaticCSVAddOn::get_instance();
 }
 
-
-// add_shortcode( 'export_csv', 'gforms_automated_export');
-
-
-// add_action('gform_form_settings_gravityforms-automatic-csv-export', 'stupid_test', 1 , 1 );
