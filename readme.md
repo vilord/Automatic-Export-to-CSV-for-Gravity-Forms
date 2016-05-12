@@ -1,3 +1,7 @@
+
+###If you use the plugin and enjoy it , I'm also selling Premium Support via GumRoad 
+https://gumroad.com/l/gformautocsv
+
 ##1. Requirements
 
 This plugin requires a WordPress install with the Gravity Forms plugin activated, running on any server that can send email.
@@ -31,4 +35,7 @@ Once the plugin is installed and activated, you can enable an automated export f
 5. Choose a frequency for the export to occur (Hourly, Daily, Weekly, Monthly).
 6. Enter the email address you would like the export sent to.
 7. Click "Update Settings" to save your settings.
+
+
+
 
