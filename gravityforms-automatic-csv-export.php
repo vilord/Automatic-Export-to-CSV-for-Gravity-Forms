@@ -18,15 +18,15 @@ define( 'GF_AUTOMATIC_CSV_VERSION', '0.1' );
 
 class GravityFormsAutomaticCSVExport {
 
-	//Make sure Gforms is installed and API available
-	
-
 	public function __construct() {
-		if ( class_exists( 'GFAPI' ) ) {
-			add_filter( 'cron_schedules', array($this, 'my_add_weekly' ) ); 
-			add_filter( 'cron_schedules', array($this, 'my_add_monthly' ) ); 
-			add_action( 'admin_init', array($this, 'gforms_create_schedules' ) );
 
+		if ( class_exists( 'GFAPI' ) ) {
+
+			add_filter( 'cron_schedules', array($this, 'add_weekly' ) ); 
+
+			add_filter( 'cron_schedules', array($this, 'add_monthly' ) ); 
+
+			add_action( 'admin_init', array($this, 'gforms_create_schedules' ) );
 
 			$forms = GFAPI::get_forms();
 
@@ -54,7 +54,7 @@ class GravityFormsAutomaticCSVExport {
 		* @param array $schedules.
 		* @return array $schedules.
 	*/
-	public function my_add_weekly( $schedules ) {
+	public function add_weekly( $schedules ) {
 		// add a 'weekly' schedule to the existing set
 		$schedules['weekly'] = array(
 			'interval' => 604800,
@@ -72,7 +72,7 @@ class GravityFormsAutomaticCSVExport {
 		* @param array $schedules.
 		* @return array $schedules.
 	*/
-	public function my_add_monthly( $schedules ) {
+	public function add_monthly( $schedules ) {
 		// add a 'weekly' schedule to the existing set
 		$schedules['monthly'] = array(
 			'interval' => 604800 * 4,
