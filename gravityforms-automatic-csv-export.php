@@ -126,17 +126,6 @@ class GravityFormsAutomaticCSVExport {
 
 	}
 
-
-	public function functesting() {
-		if ( ! function_exists( 'get_current_screen' ) ){
-			return;
-		}
-		else {
-			$screen = get_current_screen();
-			print_r( "<h1>Current Screen is " . $screen . " </h1>" );
-		}
-	}
-
 	
 	/**
 		* Run Automated Exports
