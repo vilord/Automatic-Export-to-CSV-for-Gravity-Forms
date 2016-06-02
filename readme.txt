@@ -1,13 +1,15 @@
 === Plugin Name ===
 Gravity Forms Automatic Export to CSV
 
-##1. Requirements
+Contributors: Alex Cavender
+
+== Requirements ==
 
 This plugin requires a WordPress install with the Gravity Forms plugin activated, running on any server that can send email.
 If you don't have Gravity Forms yet, purchase a license from http://www.gravityforms.com/
 
 
-##2. Installation
+== Installation ==
 
 Option 1: Upload ZIP
 
