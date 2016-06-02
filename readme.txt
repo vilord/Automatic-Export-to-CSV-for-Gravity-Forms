@@ -3,6 +3,8 @@ Gravity Forms Automatic Export to CSV
 
 Contributors: Alex Cavender
 
+Tested up to : WordPress 4.5.2
+
 == Requirements ==
 
 This plugin requires a WordPress install with the Gravity Forms plugin activated, running on any server that can send email.
