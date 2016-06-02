@@ -27,7 +27,7 @@ b. Browse to the wp-content/plugins folder on your server
 c. Upload the gravityforms-automatic-csv-export folder into your plugins folder
 d. Log in to your WordPress Admin. From the WordPress Admin area, click on "Plugins". Under Gravity Forms Automatic CSV Export, click "Activate". 
 
-##3. Configuration
+== Configuration ==
 
 Once the plugin is installed and activated, you can enable an automated export for any of your forms. If you haven't created any forms in Gravity Forms yet, you'll want to star by creating at least one form.
 
@@ -40,7 +40,7 @@ Once the plugin is installed and activated, you can enable an automated export f
 7. Click "Update Settings" to save your settings.
 
 
-###If you get a lot of use out of this plugin, please consider purchasing a 12 month support license. It will support future development of this and other plugins! 
+If you get a lot of use out of this plugin, please consider purchasing a 12 month support license. It will support future development of this and other plugins! 
 I'm selling support via GumRoad 
 https://gumroad.com/l/gformautocsv
 
