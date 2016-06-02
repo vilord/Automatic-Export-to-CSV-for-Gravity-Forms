@@ -1,6 +1,5 @@
-
-![screenshot of gravity forms automatic export to csv](https://raw.githubusercontent.com/alexcavender/gravity-forms-automatic-export-to-csv/master/screenshot.png)
-
+=== Plugin Name ===
+Gravity Forms Automatic Export to CSV
 
 ##1. Requirements
 
