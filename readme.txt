@@ -5,7 +5,7 @@ Contributors: Alex Cavender
 
 Tags: Gravity Forms, CSV, Automatic Export
 
-Tested up to : WordPress 4.5.2
+Tested up to WordPress 4.5.2
 
 == Requirements ==
 
