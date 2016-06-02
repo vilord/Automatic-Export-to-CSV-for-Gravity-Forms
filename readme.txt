@@ -7,7 +7,7 @@ Tested up to : WordPress 4.5.2
 
 == Requirements ==
 
-This plugin requires a WordPress install with the Gravity Forms plugin activated, running on any server that can send email.
+Requires at least WordPress 4.4 with Gravity Forms activated, running on any server that can send email.
 If you don't have Gravity Forms yet, purchase a license from http://www.gravityforms.com/
 
 
