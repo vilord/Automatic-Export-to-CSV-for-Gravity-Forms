@@ -1,5 +1,5 @@
 === Plugin Name ===
-Gravity Forms Automatic Export to CSV
+Automatic Export to CSV for Gravity Forms 
 
 Contributors: Alex Cavender
 
