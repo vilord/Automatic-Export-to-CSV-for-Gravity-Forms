@@ -27,7 +27,7 @@ class GFAutomaticCSVAddOn extends GFAddOn {
         add_filter( 'gform_submit_button', array( $this, 'form_submit_button' ), 10, 2 );
     }
 
-    protected function init_admin() {
+    public function init_admin() {
         parent::init_admin();
 
         //do_action( 'gforms_automated_export_pre_save_settings' );
