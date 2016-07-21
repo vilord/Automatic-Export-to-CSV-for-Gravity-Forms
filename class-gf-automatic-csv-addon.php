@@ -30,7 +30,7 @@ class GFAutomaticCSVAddOn extends GFAddOn {
     public function init_admin() {
         parent::init_admin();
 
-        //do_action( 'gforms_automated_export_pre_save_settings' );
+        
     }
 
     public function scripts() {
