@@ -5,7 +5,7 @@ GFForms::include_addon_framework();
 class GFAutomaticCSVAddOn extends GFAddOn {
 
     protected $_version = GF_AUTOMATIC_CSV_VERSION;
-    protected $_min_gravityforms_version = '1.9';
+    protected $_min_gravityforms_version = '2.0';
     protected $_slug = 'gravityforms-automatic-csv-export';
     protected $_path = 'gravityforms-automatic-csv-export/gravityforms-automatic-csv-export.php';
     protected $_full_path = __FILE__;

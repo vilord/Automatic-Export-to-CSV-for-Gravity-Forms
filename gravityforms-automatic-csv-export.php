@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Gravity Forms Automatic Export to CSV
+Plugin Name: Automatic Export to CSV for Gravity Forms 
 Plugin URI: http://gravitycsv.com
-Description: Simple way to automatically email with CSV export of your Gravity Form entries on a schedule.
-Version: 0.2
+Description: Automatically send an email CSV export of your Gravity Form entries on a schedule.
+Version: 0.3
 Author: Alex Cavender
 Author URI: http://alexcavender.com/
 Text Domain: gravityforms-automatic-csv-export
@@ -12,7 +12,7 @@ Domain Path: /languages
 
 defined( 'ABSPATH' ) or die();
 
-define( 'GF_AUTOMATIC_CSV_VERSION', '0.1' );
+define( 'GF_AUTOMATIC_CSV_VERSION', '0.3' );
 
 
 
@@ -23,9 +23,7 @@ class GravityFormsAutomaticCSVExport {
 		if ( class_exists( 'GFAPI' ) ) {
 
 			add_filter( 'cron_schedules', array($this, 'add_weekly' ) ); 
-
 			add_filter( 'cron_schedules', array($this, 'add_monthly' ) ); 
-
 			add_action( 'admin_init', array($this, 'gforms_create_schedules' ) );
 
 			$forms = GFAPI::get_forms();
@@ -33,13 +31,10 @@ class GravityFormsAutomaticCSVExport {
 			foreach ( $forms as $form ) {
 
 				$form_id = $form['id'];
-
 				$enabled = $form['gravityforms-automatic-csv-export']['enabled'];
 
 				if ( $enabled == 1 ) {
-
 					add_action( 'csv_export_' . $form_id , array($this, 'gforms_automated_export' ) );
-
 				}	
 			
 			}
