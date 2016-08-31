@@ -12,7 +12,7 @@ Domain Path: /languages
 
 defined( 'ABSPATH' ) or die();
 
-define( 'GF_AUTOMATIC_CSV_VERSION', '0.3' );
+define( 'GF_AUTOMATIC_CSV_VERSION', '0.3.1' );
 
 
 
