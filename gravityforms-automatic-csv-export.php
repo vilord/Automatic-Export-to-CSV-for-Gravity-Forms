@@ -161,10 +161,15 @@ class GravityFormsAutomaticCSVExport {
 
 		}
 		
-		
+	
+		//get the total number of entries that the form has
+		$total_entries = GFAPI::count_entries( $form_id );
+		//set paging to the total number of entries for the form
+		$paging = array( 'offset' => 0, 'page_size' => $total_entries );
+		//Pass a non-null value to get the total count in the results
+		$total_count = 0;
 
-		$all_form_entries = GFAPI::get_entries( $form_id , $search_criteria); // ADD search criteria back in !!!!
-
+		$all_form_entries = GFAPI::get_entries( $form_id , $search_criteria, null, $paging, $total_count);
 		
 
 		foreach( $form['fields'] as $field ) {
