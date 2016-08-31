@@ -199,12 +199,13 @@ class GravityFormsAutomaticCSVExport {
 		fclose($myfile);
 
 		// To-Do = add to media library
+		$server = $_SERVER['HTTP_HOST'];
 
 		$email_address = $form['gravityforms-automatic-csv-export']['email_address'];
 
 		// Send an email using the latest csv file
 		$attachments = $path . '/form_' . $form_id . '_' . date('Y-m-d-giA') . '.csv';
-		$headers[] = 'From: WordPress <you@yourdomain.org>';
+		$headers[] = 'From: WordPress <wordpress@'.$server.'>';
 		//$headers[] = 'Bcc: bcc@yourdomain.com';
 		wp_mail( $email_address , 'Automatic Form Export', 'CSV export is attached to this message', $headers, $attachments);
 	}
