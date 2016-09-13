@@ -173,23 +173,51 @@ class GravityFormsAutomaticCSVExport {
 		
 
 		foreach( $form['fields'] as $field ) {
-			$output .= preg_replace('/[,]/', '', $field->label) . ',' ;
-		}
 
-		$output .= "\r\n";
+            if($field->type == 'section') 
+                continue;
 
-		foreach ( $all_form_entries as $entry ) {
+            //don't include hidden name fields
+            if($field->type == 'name') {
+                foreach($field->choices as $choice) {
+                    if($choice->isHidden == 1)
+                        continue;
+                }
+            }
 
-			for ( $i = 1; $i < 100; $i++ ){
-				if ( array_key_exists( $i, $entry ) ) {
-		
-					$output .= preg_replace('/[,]/', '', $entry[$i]) . ',';
+            $output .= preg_replace('/[,]/', '', $field->label) . ','; 
+        }
 
-				}
-			}	
-			$output .= ','; 
-			$output .= "\r\n";
-		}
+        $output .= "\r\n";
+
+        //loop over form entries
+
+        foreach ( $all_form_entries as $entry ) {
+
+            foreach($entry as $key => $val) {
+                //skip blank values
+                if(strlen($val) > 0) {
+
+                    //if next value is not a decimal key but previous one was, stop appending for that field
+                    if(strpos( $key, '.' ) === false && substr($output, strlen($output)-1, 1) == ' ') {
+                        $output .= ',';
+                    }
+
+                    //decimal keys (EX: for a Name field which has several inputs)
+                    if (is_numeric( $key ) && strpos( $key, '.' )) {
+                        $output .= preg_replace('/[,]/', '', sanitize_text_field($val));
+                        $output .= ' ';
+                    }
+                    else if (is_int($key)) { //regular integer key for standard fields
+                        $output .= preg_replace('/[,]/', '', sanitize_text_field($val));
+                        $output .= ',';
+                    }
+                }
+            }
+
+            $output .= ',';
+            $output .= "\r\n";
+        }
 		
 		$upload_dir = wp_upload_dir();
 
