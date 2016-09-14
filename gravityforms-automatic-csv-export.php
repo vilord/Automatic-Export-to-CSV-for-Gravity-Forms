@@ -3,7 +3,7 @@
 Plugin Name: Automatic Export to CSV for Gravity Forms 
 Plugin URI: http://gravitycsv.com
 Description: Automatically send an email containing a CSV export of your Gravity Form entries on a schedule.
-Version: 0.3.1
+Version: 0.3.2
 Author: Alex Cavender
 Author URI: http://alexcavender.com/
 Text Domain: gravityforms-automatic-csv-export
@@ -12,7 +12,7 @@ Domain Path: /languages
 
 defined( 'ABSPATH' ) or die();
 
-define( 'GF_AUTOMATIC_CSV_VERSION', '0.3.1' );
+define( 'GF_AUTOMATIC_CSV_VERSION', '0.3.2' );
 
 
 
@@ -236,7 +236,7 @@ class GravityFormsAutomaticCSVExport {
 		fclose($myfile);
 
 		// To-Do = add to media library
-		
+
 		$server = $_SERVER['HTTP_HOST'];
 
 		$email_address = $form['gravityforms-automatic-csv-export']['email_address'];
