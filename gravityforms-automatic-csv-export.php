@@ -134,8 +134,12 @@ class GravityFormsAutomaticCSVExport {
 
 		$output = "";
 		$form_id = substr( current_filter() , -1);
-
 		$form = GFAPI::get_form( $form_id ); // get form by ID 
+		$search_criteria = array();
+
+		if ( $form['gravityforms-automatic-csv-export']['search_criteria'] == 'all' ) {
+			$search_criteria = array();
+		}
 
 		if ( $form['gravityforms-automatic-csv-export']['search_criteria'] == 'previous_day' ) {
 
@@ -232,6 +236,7 @@ class GravityFormsAutomaticCSVExport {
 		fclose($myfile);
 
 		// To-Do = add to media library
+		
 		$server = $_SERVER['HTTP_HOST'];
 
 		$email_address = $form['gravityforms-automatic-csv-export']['email_address'];
