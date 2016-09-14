@@ -182,11 +182,13 @@ class GravityFormsAutomaticCSVExport {
                 continue;
 
             //don't include hidden name fields
-            if($field->type == 'name') {
-                foreach($field->choices as $choice) {
-                    if($choice->isHidden == 1)
-                        continue;
-                }
+            if( $field->type == 'name' ) {
+            	if ( !empty( $field->choices) ){
+	                foreach( $field->choices as $choice ) {
+	                    if( $choice->isHidden == 1 )
+	                        continue;
+	                }
+            	}
             }
 
             $output .= preg_replace('/[,]/', '', $field->label) . ','; 
