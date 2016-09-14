@@ -195,33 +195,34 @@ class GravityFormsAutomaticCSVExport {
         $output .= "\r\n";
 
         //loop over form entries
+        if ( !empty( $all_form_entries ) ){
+	        foreach ( $all_form_entries as $entry ) {
 
-        foreach ( $all_form_entries as $entry ) {
+	            foreach($entry as $key => $val) {
+	                //skip blank values
+	                if(strlen($val) > 0) {
 
-            foreach($entry as $key => $val) {
-                //skip blank values
-                if(strlen($val) > 0) {
+	                    //if next value is not a decimal key but previous one was, stop appending for that field
+	                    if(strpos( $key, '.' ) === false && substr($output, strlen($output)-1, 1) == ' ') {
+	                        $output .= ',';
+	                    }
 
-                    //if next value is not a decimal key but previous one was, stop appending for that field
-                    if(strpos( $key, '.' ) === false && substr($output, strlen($output)-1, 1) == ' ') {
-                        $output .= ',';
-                    }
+	                    //decimal keys (EX: for a Name field which has several inputs)
+	                    if (is_numeric( $key ) && strpos( $key, '.' )) {
+	                        $output .= preg_replace('/[,]/', '', sanitize_text_field($val));
+	                        $output .= ' ';
+	                    }
+	                    else if (is_int($key)) { //regular integer key for standard fields
+	                        $output .= preg_replace('/[,]/', '', sanitize_text_field($val));
+	                        $output .= ',';
+	                    }
+	                }
+	            }
 
-                    //decimal keys (EX: for a Name field which has several inputs)
-                    if (is_numeric( $key ) && strpos( $key, '.' )) {
-                        $output .= preg_replace('/[,]/', '', sanitize_text_field($val));
-                        $output .= ' ';
-                    }
-                    else if (is_int($key)) { //regular integer key for standard fields
-                        $output .= preg_replace('/[,]/', '', sanitize_text_field($val));
-                        $output .= ',';
-                    }
-                }
-            }
-
-            $output .= ',';
-            $output .= "\r\n";
-        }
+	            $output .= ',';
+	            $output .= "\r\n";
+	        }
+    	}
 		
 		$upload_dir = wp_upload_dir();
 
@@ -274,4 +275,3 @@ class GF_Automatic_Csv_Bootstrap {
 function gf_simple_addon() {
     return GFAutomaticCSVAddOn::get_instance();
 }
-
