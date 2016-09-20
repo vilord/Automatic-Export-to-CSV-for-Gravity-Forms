@@ -6,6 +6,16 @@
 This plugin requires a WordPress install with the Gravity Forms plugin activated, running on any server that can send email.
 If you don't have Gravity Forms yet, purchase a license from http://www.gravityforms.com/
 
+###Supported and Tested Field Types 
+Single Line Text
+Paragraph Text
+Number
+Name
+Date
+Time
+(more coming with further development)
+
+
 
 ##2. Installation
 
