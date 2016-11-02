@@ -31,7 +31,12 @@ class GravityFormsAutomaticCSVExport {
 			foreach ( $forms as $form ) {
 
 				$form_id = $form['id'];
-				$enabled = $form['gravityforms-automatic-csv-export']['enabled'];
+				
+				$enabled = 0;
+
+				if ( isset( $form['gravityforms-automatic-csv-export']['enabled'] ) ) {
+					$enabled = $form['gravityforms-automatic-csv-export']['enabled'];
+				}
 
 				if ( $enabled == 1 ) {
 					add_action( 'csv_export_' . $form_id , array($this, 'gforms_automated_export' ) );
@@ -93,7 +98,11 @@ class GravityFormsAutomaticCSVExport {
 
 			$form_id = $form['id'];
 
-			$enabled = $form['gravityforms-automatic-csv-export']['enabled'];
+			$enabled = 0;
+
+			if ( isset( $form['gravityforms-automatic-csv-export']['enabled'] ) ) {
+				$enabled = $form['gravityforms-automatic-csv-export']['enabled'];
+			}
 
 			if ( $enabled == 1 ) {
 
